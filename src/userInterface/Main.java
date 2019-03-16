@@ -1,6 +1,6 @@
 package userInterface;
 
-import java.io.IOException;
+//import java.io.IOException;
 
 //import javax.swing.JOptionPane;
 
@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import threads.PacManThread;
 import userInterface.PacManController;
 
 public class Main extends Application {
@@ -16,17 +17,15 @@ public class Main extends Application {
 	public static void main(String[] args) {
 		launch(args);
 		PacManController pc = new PacManController();
+		System.out.println("HOLA");
+		PacManThread pt = new PacManThread(pc);
+		pt.start();
 		try {
-			// pc.loadLevelFile("C:\\Users\\thetr\\Documents\\Segundo Semestre\\APO
-			// II\\ECLIPSE\\Workspace\\catch-Pac-Man\\src\\data\\level0.txt", "\t");
-			System.out.println("HOLA");
-			String msg = pc.getLevel0(
-					"C:\\Users\\thetr\\Documents\\Segundo Semestre\\APO II\\ECLIPSE\\Workspace\\catch-Pac-Man\\src\\data\\level0.txt");
-			System.out.println(msg);
-		} catch (IOException e) {
+			pt.join();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 	}
 
 	@Override

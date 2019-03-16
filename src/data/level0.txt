@@ -1,5 +1,5 @@
-#Level	
-0	
-#radio posX posY waiting orientation rebounds stopped	
-50	100	100	10	RIGHT	FALSE
-60	50	300	10	LEFT	FAlSE
+#Level
+0
+#radio posX posY waiting orientation rebounds stopped
+70	50	50	10	RIGHT	False
+60	20	20	10	LEFT	False
