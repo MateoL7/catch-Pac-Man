@@ -1,0 +1,1 @@
+The proyect is about a game where the users must stop the Pac-Man before it touches a border of the screen.
