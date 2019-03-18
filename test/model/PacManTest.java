@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import javafx.scene.layout.Pane;
-import model.PacMan.Direction;
+import model.Direction;
 
 public class PacManTest {
 

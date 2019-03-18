@@ -1,9 +1,7 @@
 package model;
 
 public class PacMan {
-	public enum Direction {
-		RIGHT, LEFT, UP, DOWN
-	};
+	
 
 	private double radius;
 	private Direction orientation;
