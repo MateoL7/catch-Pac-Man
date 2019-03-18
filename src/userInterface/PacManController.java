@@ -5,6 +5,8 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import javafx.scene.control.MenuBar;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Arc;
@@ -33,10 +35,10 @@ public class PacManController {
 		
 	}
 	public double getWidth() {
-		return stage.getWidth();
+		return field.getWidth();
 	}
 	public double getHeight() {
-		return stage.getHeight();
+		return field.getHeight();
 	}
 	
 	@FXML
@@ -68,8 +70,11 @@ public class PacManController {
 					
 					PacMan pac1 = new PacMan(rad, posX, posY, ori, stp);
 					Arc arc1 = new Arc(posX, posY, rad, rad, extra, extra);
+					//try {
 					pacManList.add(pac1);
 					arcs.add(arc1);
+					//}catch(NullPointerException e) {
+					//	JOptionPane.showMessageDialog(null, "An object is null");}
 				}
 				
 			}

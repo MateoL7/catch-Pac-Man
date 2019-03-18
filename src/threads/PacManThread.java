@@ -19,6 +19,7 @@ public class PacManThread extends Thread {
 		//double h = pc.getHeight();
 		while(true) {
 			//p.movePacMan(w, h);
+			
 			pc.updateGame();
 			try {
 				sleep(10);

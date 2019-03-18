@@ -1,5 +1,9 @@
 package userInterface;
 
+import java.io.IOException;
+
+import javax.swing.JOptionPane;
+
 //import java.io.IOException;
 
 //import javax.swing.JOptionPane;
@@ -19,11 +23,17 @@ public class Main extends Application {
 		PacManController pc = new PacManController();
 		System.out.println("HOLA");
 		PacManThread pt = new PacManThread(pc);
+		try {
+			pc.getLevel0("C:\\Users\\thetr\\Documents\\Segundo Semestre\\APO II\\ECLIPSE\\Workspace\\catch-Pac-Man\\src\\data\\level0.txt");
+		} catch (IOException e1) {
+			JOptionPane.showMessageDialog(null, "An IOException has ocurred");
+			e1.printStackTrace();
+		}
 		pt.start();
 		try {
 			pt.join();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
+			JOptionPane.showMessageDialog(null, "An InterruptionException has ocurred");
 			e.printStackTrace();
 		}
 	}
