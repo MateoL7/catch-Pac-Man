@@ -196,7 +196,16 @@ public class PacManController {
 	
 	 @FXML
 	    void saveGame(ActionEvent event) {
-
+		 for(int i = 0; i < pacManList.size(); i ++) {
+			 
+		 }
+		 try {
+			PrintWriter pw = new PrintWriter("data/savedGame.txt");
+			//pw.
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			System.out.println("Cannot find file");
+		}
 	    }
 
 	public List<PacMan> getPacList() {
