@@ -21,7 +21,7 @@ public class Main extends Application {
 
 	public static void main(String[] args) {
 		launch(args);
-		System.out.println("HOLA");
+		System.out.println("Impresion Main");
 	}
 
 	@Override
@@ -31,9 +31,11 @@ public class Main extends Application {
 		PacManController pmc = fxmlLoader.getController();
 		pmc.setStage(stage);
 
+
 		Scene scene = new Scene(root);
 		stage.setTitle("Catch the Pac-Man!");
 		stage.setScene(scene);
+		stage.setMaximized(true);
 		stage.show();
 		
 	}

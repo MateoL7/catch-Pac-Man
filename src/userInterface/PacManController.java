@@ -1,5 +1,6 @@
 package userInterface;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import java.io.*;
 import java.util.ArrayList;
@@ -10,11 +11,16 @@ import javax.swing.JOptionPane;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Arc;
+import javafx.scene.shape.ArcType;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import model.PacMan;
 import model.Direction;
+import threads.PacManControllerThread;
 import threads.PacManThread;
 
 public class PacManController {
@@ -22,141 +28,171 @@ public class PacManController {
 	private Stage stage;
 
 	private List<PacMan> pacManList;
-    
-	private List<Arc> arcs ;
-	
+
+	private List<Arc> arcs;
+
 	private PacMan p1;
-	
-    @FXML
-    private MenuBar menu;
 
-    @FXML
-    private Menu loadMenu;
+	@FXML
+	private BorderPane screen;
 
-    @FXML
-    private MenuItem lvl0;
+	@FXML
+	private MenuBar menu;
 
-    @FXML
-    private MenuItem lvl1;
+	@FXML
+	private Menu loadMenu;
 
-    @FXML
-    private MenuItem lvl2;
+	@FXML
+	private MenuItem lvl0;
 
-    @FXML
-    private MenuItem saveMenu;
+	@FXML
+	private MenuItem lvl1;
 
-    @FXML
-    private MenuItem exitMenu;
+	@FXML
+	private MenuItem lvl2;
 
-    @FXML
-    private MenuItem scoresMenu;
+	@FXML
+	private MenuItem saveMenu;
 
-    @FXML
-    private Pane field;
-    
+	@FXML
+	private MenuItem exitMenu;
+
+	@FXML
+	private MenuItem scoresMenu;
+
+	@FXML
+	private Pane field;
+
 	public void setStage(Stage pStage) {
 		stage = pStage;
-		
+
 	}
+
 	public double getWidth() {
-		return field.getWidth();
+		return field.getMaxWidth();
 	}
+
 	public double getHeight() {
-		return field.getHeight();
+		return field.getMaxHeight();
 	}
 	
 	@FXML
-	void initialize(){
+	public void initialize() {
 		pacManList = new ArrayList<PacMan>();
 		arcs = new ArrayList<Arc>();
-		PacManThread pt = new PacManThread(this);
-		pt.setDaemon(true);
-		pt.start();
+
 	}
-	
-	public String chooseLevel() {
-		String msg = "C:\\Users\\thetr\\Documents\\Segundo Semestre\\APO II\\ECLIPSE\\Workspace\\catch-Pac-Man\\src\\data\\level0.txt";
-		if(loadMenu.getOnAction() == lvl0) {
-			msg = "C:\\Users\\thetr\\Documents\\Segundo Semestre\\APO II\\ECLIPSE\\Workspace\\catch-Pac-Man\\src\\data\\level0.txt";
+
+	@FXML
+	public void getLevel0(ActionEvent event) {
+		String level = "data/level0.txt";
+		try {
+			loadGame(level);
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-		else if(loadMenu.getOnAction() == lvl1) {
-			msg = "C:\\Users\\thetr\\Documents\\Segundo Semestre\\APO II\\ECLIPSE\\Workspace\\catch-Pac-Man\\src\\data\\level1.txt";
+		for (int i = 0; i < pacManList.size(); i++) {
+			PacManThread pt = new PacManThread(this, pacManList.get(i));
+			pt.setDaemon(true);
+			pt.start();
 		}
-		else if(loadMenu.getOnAction() == lvl2) {
-			msg = "C:\\Users\\thetr\\Documents\\Segundo Semestre\\APO II\\ECLIPSE\\Workspace\\catch-Pac-Man\\src\\data\\level2.txt";
-		}
-		return msg;
+		PacManControllerThread pct = new PacManControllerThread(this);
+		pct.setDaemon(true);
+		pct.start();
 	}
-	
+
+	@FXML
+	public void getLevel1(ActionEvent event) {
+		String level = "data/level1.txt";
+		try {
+			loadGame(level);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		for (int i = 0; i < pacManList.size(); i++) {
+			PacManThread pt = new PacManThread(this, pacManList.get(i));
+			pt.setDaemon(true);
+			pt.start();
+		}
+		PacManControllerThread pct = new PacManControllerThread(this);
+		pct.setDaemon(true);
+		pct.start();
+	}
+
+	@FXML
+	public void getLevel2(ActionEvent event) {
+		String level = "data/level2.txt";
+		try {
+			loadGame(level);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		for (int i = 0; i < pacManList.size(); i++) {
+			PacManThread pt = new PacManThread(this, pacManList.get(i));
+			pt.setDaemon(true);
+			pt.start();
+		}
+		PacManControllerThread pct = new PacManControllerThread(this);
+		pct.setDaemon(true);
+		pct.start();
+	}
+
 	public void loadGame(String level) throws IOException {
-		File n = new File("C:\\Users\\thetr\\Documents\\Segundo Semestre\\APO II\\ECLIPSE\\Workspace\\catch-Pac-Man\\src\\data\\level0.txt");
+		File n = new File(level);
 		FileReader fr = new FileReader(n);
 		BufferedReader br = new BufferedReader(fr);
-		
+
 		String line = br.readLine();
 		String sep = "\t";
 		double extra = Math.random();
-		while(line != null) {
+		while (line != null) {
 			String[] info = line.split(sep);
-			if(info[0].charAt(0) != '#') {
-				if(info.length == 1) {
-					int lvl= Integer.parseInt(info[0]);
-				}
-				else {
-					double rad = Double.parseDouble (info[0]);
-					double posX = Double.parseDouble (info[1]);
-					double posY = Double.parseDouble (info[2]);
-					Direction ori = Direction.valueOf(info[4]); 
+			if (info[0].charAt(0) != '#') {
+				if (info.length == 1) {
+					int lvl = Integer.parseInt(info[0]);
+				} else {
+					double rad = Double.parseDouble(info[0]);
+					double posX = Double.parseDouble(info[1]);
+					double posY = Double.parseDouble(info[2]);
+					Direction ori = Direction.valueOf(info[4]);
 					Boolean stp = Boolean.valueOf(info[5]);
-					
-					PacMan pac1 = new PacMan(rad, posX, posY, ori, stp);
-					Arc arc1 = new Arc(posX, posY, rad, rad, extra, extra);
+
+					p1 = new PacMan(rad, posX, posY, ori, stp);
+					Arc arc1 = new Arc(posX, posY, rad, rad, 45, 270);
+					arc1.setFill(Color.YELLOW);
+					arc1.setType(ArcType.ROUND);
+					field.getChildren().add(arc1);
 					try {
-					pacManList.add(pac1);
-					arcs.add(arc1);
-					}catch(NullPointerException e) {
-					JOptionPane.showMessageDialog(null, "An object is null");}
+						pacManList.add(p1);
+						arcs.add(arc1);
+					} catch (NullPointerException e) {
+						JOptionPane.showMessageDialog(null, "An object is null");
+					}
 				}
-				
+
 			}
-			
 
 			line = br.readLine();
 		}
 		br.close();
 		fr.close();
-	}	
+	}
+
 	public void updateGame() {
-		Arc ar = new Arc();
-		//double extra = (Math.random()*200.0) + 100.0;
-		for(int i = 0; i < pacManList.size() && i < arcs.size(); i++) {
-			
-			if(pacManList.get(i) != null && arcs.get(i) != null) {
-				
-				arcs.get(i).setRadiusX(pacManList.get(i).getRadius());
-				
-				arcs.get(i).setRadiusY(pacManList.get(i).getRadius());
-				
-				//arcs.get(i).setCenterX(pacManList.get(i).getX());
-				//arcs.get(i).setCenterY(pacManList.get(i).getY());
-				//arcs.get(i).setStartAngle(20.0);
-				
-				ar = arcs.get(i);
-				
-				field.getChildren().add(ar);
-				ar.setVisible(true);
-				
-				pacManList.get(i).movePacMan(this.getWidth(), this.getHeight());
-				
-				ar.setLayoutX(pacManList.get(i).getX());
-				
-				ar.setLayoutY(pacManList.get(i).getY());
-				
-			}
+		Arc actualArc = new Arc();
+		PacMan actualPacMan;
+		for (int i = 0; i < pacManList.size() && i < arcs.size(); i++) {
+			actualArc = arcs.get(i);
+			actualPacMan = pacManList.get(i);
+
+			actualArc.setLayoutX(actualPacMan.getX());
+
+			actualArc.setLayoutY(actualPacMan.getY());
 		}
 	}
-	public List<PacMan> getPacList(){
+
+	public List<PacMan> getPacList() {
 		return pacManList;
-	}	
+	}
 
 }

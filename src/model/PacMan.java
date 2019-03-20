@@ -58,31 +58,37 @@ public class PacMan {
 	}
 
 	public void movePacMan(double width, double height) {
-		while (stp != true) {
-			switch (orientation) {
+		switch (orientation) {
 			case RIGHT:
-				x = x + 5;
-				if (x >= width) {
+				if ((x+=5) >= width) {
 					orientation = Direction.LEFT;
+				}
+				else {
+					x = x+5;
 				}
 				break;
 			case LEFT:
-				x = x - 5;
-				if (x <= 0) {
-					orientation = Direction.LEFT;
+				if ((x-=5) <= 0) {
+					orientation = Direction.RIGHT;
+				}
+				else {
+					x = x-5;
 				}
 				break;
 			case UP:
-				y = y - 5;
-				if (y <= 0) {
+				if ((y-=5) <= 0) {
 					orientation = Direction.DOWN;
 				}
+				else {
+					y = y-5;
+				}
 			case DOWN:
-				y = y + 5;
-				if (y >= height) {
+				if ((y+=5)>= height) {
 					orientation = Direction.UP;
 				}
-			}
+				else {
+					y = y+5;
+				}
 		}
 
 	}

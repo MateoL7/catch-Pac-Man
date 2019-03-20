@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userInterface.PacManController">
+<BorderPane fx:id="screen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userInterface.PacManController">
    <bottom>
       <Label text="CATCH THE PAC-MAN" textFill="#021af7" BorderPane.alignment="CENTER">
          <font>
@@ -23,9 +23,9 @@
             <items>
                   <Menu fx:id="loadMenu" mnemonicParsing="false" text="Load Game">
                     <items>
-                      <MenuItem fx:id="lvl0" mnemonicParsing="false" text="Level 0" />
-                        <MenuItem fx:id="lvl1" mnemonicParsing="false" text="Level 1" />
-                        <MenuItem fx:id="lvl2" mnemonicParsing="false" text="Level 2" />
+                      <MenuItem fx:id="lvl0" mnemonicParsing="false" onAction="#getLevel0" text="Level 0" />
+                        <MenuItem fx:id="lvl1" mnemonicParsing="false" onAction="#getLevel1" text="Level 1" />
+                        <MenuItem fx:id="lvl2" mnemonicParsing="false" onAction="#getLevel2" text="Level 2" />
                     </items>
                   </Menu>
                <MenuItem fx:id="saveMenu" mnemonicParsing="false" text="Save Game" />
@@ -41,6 +41,6 @@
       </MenuBar>
    </top>
    <center>
-      <Pane fx:id="field" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <Pane fx:id="field" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="1499.0" prefWidth="1499.0" style="-fx-background-color: BLACK;" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>
