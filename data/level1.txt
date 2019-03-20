@@ -2,6 +2,6 @@
 1
 #radio posX posY waiting orientation rebounds stopped
 50	100	100	10	DOWN	False
-60	250	450	10	UP	False
-70	500	250	10	RIGHT	False
-60	700	350	10	LEFT	False
+60	650	450	10	UP	False
+20	20	550	10	RIGHT	False
+80	80	350	10	RIGHT	False

@@ -1,9 +1,5 @@
 package threads;
 
-import java.io.IOException;
-
-import javax.swing.JOptionPane;
-
 import model.PacMan;
 import userInterface.PacManController;
 
@@ -23,7 +19,7 @@ public class PacManThread extends Thread {
 		while(true) {
 			p.movePacMan(pc.getWidth(), pc.getHeight());
 			try {
-				sleep(50);
+				sleep(10);
 			}catch(InterruptedException e) {
 				e.printStackTrace();
 			}

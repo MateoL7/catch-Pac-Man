@@ -28,8 +28,8 @@
                         <MenuItem fx:id="lvl2" mnemonicParsing="false" onAction="#getLevel2" text="Level 2" />
                     </items>
                   </Menu>
-               <MenuItem fx:id="saveMenu" mnemonicParsing="false" text="Save Game" />
-                <MenuItem fx:id="exitMenu" mnemonicParsing="false" text="Exit" />
+               <MenuItem fx:id="saveMenu" mnemonicParsing="false" onAction="#saveGame" text="Save Game" />
+                <MenuItem fx:id="exitMenu" mnemonicParsing="false" onAction="#exitGame" text="Exit" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Scores">

@@ -16,7 +16,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Arc;
 import javafx.scene.shape.ArcType;
-import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import model.PacMan;
 import model.Direction;
@@ -69,11 +68,11 @@ public class PacManController {
 	}
 
 	public double getWidth() {
-		return field.getMaxWidth();
+		return 1900;
 	}
 
 	public double getHeight() {
-		return field.getMaxHeight();
+		return 900;
 	}
 	
 	@FXML
@@ -82,10 +81,16 @@ public class PacManController {
 		arcs = new ArrayList<Arc>();
 
 	}
+	
+	@FXML
+    void exitGame(ActionEvent event) {
+		stage.close();
+    }
 
 	@FXML
 	public void getLevel0(ActionEvent event) {
 		String level = "data/level0.txt";
+		PacManControllerThread pct = new PacManControllerThread(this);
 		try {
 			loadGame(level);
 		} catch (IOException e) {
@@ -96,7 +101,6 @@ public class PacManController {
 			pt.setDaemon(true);
 			pt.start();
 		}
-		PacManControllerThread pct = new PacManControllerThread(this);
 		pct.setDaemon(true);
 		pct.start();
 	}
@@ -144,7 +148,6 @@ public class PacManController {
 
 		String line = br.readLine();
 		String sep = "\t";
-		double extra = Math.random();
 		while (line != null) {
 			String[] info = line.split(sep);
 			if (info[0].charAt(0) != '#') {
@@ -187,9 +190,14 @@ public class PacManController {
 
 			actualArc.setLayoutX(actualPacMan.getX());
 
-			actualArc.setLayoutY(actualPacMan.getY());
+			actualArc.setCenterY(actualPacMan.getY());
 		}
 	}
+	
+	 @FXML
+	    void saveGame(ActionEvent event) {
+
+	    }
 
 	public List<PacMan> getPacList() {
 		return pacManList;

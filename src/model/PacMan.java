@@ -60,7 +60,7 @@ public class PacMan {
 	public void movePacMan(double width, double height) {
 		switch (orientation) {
 			case RIGHT:
-				if ((x+=5) >= width) {
+				if (radius+(x+=10) >= width) {
 					orientation = Direction.LEFT;
 				}
 				else {
@@ -68,27 +68,29 @@ public class PacMan {
 				}
 				break;
 			case LEFT:
-				if ((x-=5) <= 0) {
+				if ((x-=10)-radius <= (x-x)) {
 					orientation = Direction.RIGHT;
 				}
 				else {
-					x = x-5;
+					x = x-10;
 				}
 				break;
 			case UP:
-				if ((y-=5) <= 0) {
+				if ((y-=10)-radius <= (y-y)) {
 					orientation = Direction.DOWN;
 				}
 				else {
-					y = y-5;
+					y = y-10;
 				}
+				break;
 			case DOWN:
-				if ((y+=5)>= height) {
+				if (radius+(y+=10)>= height) {
 					orientation = Direction.UP;
 				}
 				else {
-					y = y+5;
+					y = y+10;
 				}
+				break;
 		}
 
 	}

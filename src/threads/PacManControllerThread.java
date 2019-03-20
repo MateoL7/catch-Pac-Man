@@ -1,6 +1,7 @@
 package threads;
 
 
+import javafx.application.Platform;
 import userInterface.PacManController;
 
 public class PacManControllerThread extends Thread {
@@ -12,12 +13,14 @@ public class PacManControllerThread extends Thread {
 
 	}
 	public void run() {
-		while(true) {
-			pc.updateGame();
+		while (true) {
+			ControllerUpdateRunnable cur = new ControllerUpdateRunnable(pc);
+			Platform.runLater(cur);
+
 			try {
-				sleep(10);
-			} catch(InterruptedException e) {
-				System.out.println("The sleep has been interrupted");
+				sleep(5);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
 			}
 		}
 	}

@@ -1,8 +1,12 @@
 #Level
 2
 #radio posX posY waiting orientation rebounds stopped
-50	50	200	10	UP	False
-60	60	200	10	DOWN	False
-70	70	200	10	UP	False
-60	60	200	10	DOWN	False
-60	60	400	10	RIGHT	False
+50	300	50	10	UP	False
+60	150	60	10	DOWN	False
+70	450	70	10	UP	False
+60	650	60	10	DOWN	False
+60	60	500	10	RIGHT	False
+20	20	200	10	RIGHT	False
+60	60	60	10	RIGHT	False
+20	20	700	10	RIGHT	False
+20	850	600	10	UP	False
