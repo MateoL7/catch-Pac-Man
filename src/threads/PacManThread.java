@@ -19,7 +19,7 @@ public class PacManThread extends Thread {
 		while(p.getStp()==false) {
 			p.movePacMan(pc.getWidth(), pc.getHeight());
 			try {
-				sleep(10);
+				sleep(30);
 			}catch(InterruptedException e) {
 				e.printStackTrace();
 			}

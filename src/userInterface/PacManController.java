@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -213,9 +214,9 @@ public class PacManController {
 		for (int i = 0; i < pacManList.size() && i < arcs.size(); i++) {
 			actualArc = arcs.get(i);
 			actualPacMan = pacManList.get(i);
-
+			
 			actualArc.setLayoutX(actualPacMan.getX());
-
+			
 			actualArc.setCenterY(actualPacMan.getY());
 		}
 	}
@@ -256,9 +257,24 @@ public class PacManController {
 			e1.printStackTrace();
 		}
 	}
+	
+	@FXML
+   public void stopPacMan(MouseEvent event) {
+		double x = event.getX();
+		double y = event.getY();
+		for(int i = 0; i < pacManList.size(); i++) {
+			PacMan actual = pacManList.get(i);
+			double aX = actual.getX();
+			double aY = actual.getY();
+			double aR = actual.getRadius();
+			if(x > (aX - aR) && x < (aX + aR) && y > (aY - aR) && y < (aY + aR)) {
+				actual.setStp(true);
+			}
+		}
+	}
 
 	@FXML
-	void showScores(ActionEvent event) {
+	public void showScores(ActionEvent event) {
 		JOptionPane.showMessageDialog(null, "You are the best player!\nStill working on it, sorry.");
 	}
 }

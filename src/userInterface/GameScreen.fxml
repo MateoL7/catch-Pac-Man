@@ -42,6 +42,6 @@
       </MenuBar>
    </top>
    <center>
-      <Pane fx:id="field" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="1499.0" prefWidth="1499.0" style="-fx-background-color: BLACK;" BorderPane.alignment="CENTER" />
+      <Pane fx:id="field" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#stopPacMan" prefHeight="1499.0" prefWidth="1499.0" style="-fx-background-color: BLACK;" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>
