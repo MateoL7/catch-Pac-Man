@@ -51,6 +51,9 @@ public class PacManController {
 	private MenuItem lvl2;
 
 	@FXML
+	private MenuItem lastGame;
+
+	@FXML
 	private MenuItem saveMenu;
 
 	@FXML
@@ -74,21 +77,42 @@ public class PacManController {
 	public double getHeight() {
 		return 900;
 	}
-	
+
 	@FXML
 	public void initialize() {
 		pacManList = new ArrayList<PacMan>();
 		arcs = new ArrayList<Arc>();
 
 	}
-	
+
 	@FXML
-    void exitGame(ActionEvent event) {
+	public void exitGame(ActionEvent event) {
 		stage.close();
-    }
+	}
+
+	@FXML
+	public void getSavedGame(ActionEvent event) {
+		field.getChildren().clear();
+		String level = "data/savedGame.txt";
+		PacManControllerThread pct = new PacManControllerThread(this);
+		try {
+			loadGame(level);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		for (int i = 0; i < pacManList.size(); i++) {
+			PacManThread pt = new PacManThread(this, pacManList.get(i));
+			// pacManList.get(i).setStp(false);
+			pt.setDaemon(true);
+			pt.start();
+		}
+		pct.setDaemon(true);
+		pct.start();
+	}
 
 	@FXML
 	public void getLevel0(ActionEvent event) {
+		field.getChildren().clear();
 		String level = "data/level0.txt";
 		PacManControllerThread pct = new PacManControllerThread(this);
 		try {
@@ -107,6 +131,7 @@ public class PacManController {
 
 	@FXML
 	public void getLevel1(ActionEvent event) {
+		field.getChildren().clear();
 		String level = "data/level1.txt";
 		try {
 			loadGame(level);
@@ -125,6 +150,7 @@ public class PacManController {
 
 	@FXML
 	public void getLevel2(ActionEvent event) {
+		field.getChildren().clear();
 		String level = "data/level2.txt";
 		try {
 			loadGame(level);
@@ -145,14 +171,14 @@ public class PacManController {
 		File n = new File(level);
 		FileReader fr = new FileReader(n);
 		BufferedReader br = new BufferedReader(fr);
-
+		//int lvl;
 		String line = br.readLine();
 		String sep = "\t";
 		while (line != null) {
 			String[] info = line.split(sep);
 			if (info[0].charAt(0) != '#') {
 				if (info.length == 1) {
-					int lvl = Integer.parseInt(info[0]);
+					//lvl = Integer.parseInt(info[0]);
 				} else {
 					double rad = Double.parseDouble(info[0]);
 					double posX = Double.parseDouble(info[1]);
@@ -193,23 +219,46 @@ public class PacManController {
 			actualArc.setCenterY(actualPacMan.getY());
 		}
 	}
-	
-	 @FXML
-	    void saveGame(ActionEvent event) {
-		 for(int i = 0; i < pacManList.size(); i ++) {
-			 
-		 }
-		 try {
-			PrintWriter pw = new PrintWriter("data/savedGame.txt");
-			//pw.
+
+	@FXML
+	public void saveGame(ActionEvent event) {
+		double radius;
+		double x;
+		double y;
+		Direction d;
+		boolean stp;
+
+		try {
+			File f = new File("data/savedGame.txt");
+			FileWriter fw = new FileWriter(f);
+			BufferedWriter bw = new BufferedWriter(fw);
+			PrintWriter pw = new PrintWriter(bw);
+			pw.write("#Last\tgame\tinfo:\n#radius posX posY orientation stopped\n");
+			for (int i = 0; i < pacManList.size(); i++) {
+				PacMan actual = pacManList.get(i);
+				actual.setStp(true);
+				radius = actual.getRadius();
+				x = actual.getX();
+				y = actual.getY();
+				d = actual.getOrientation();
+				stp = actual.getStp();
+				pw.write(radius + "\t" + x + "\t" + y + "\t" + 10 + "\t" + d + "\t" + stp + "\t");
+				pw.append("\n");
+			}
+			pw.close();
+			bw.close();
+			JOptionPane.showMessageDialog(null, "GAME HAS BEEN SAVED!");
+			field.getChildren().clear();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			System.out.println("Cannot find file");
+		} catch (IOException e1) {
+			e1.printStackTrace();
 		}
-	    }
-
-	public List<PacMan> getPacList() {
-		return pacManList;
 	}
 
+	@FXML
+	void showScores(ActionEvent event) {
+		JOptionPane.showMessageDialog(null, "You are the best player!\nStill working on it, sorry.");
+	}
 }

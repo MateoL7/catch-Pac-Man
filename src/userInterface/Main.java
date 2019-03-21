@@ -1,27 +1,16 @@
 package userInterface;
 
-import java.io.IOException;
-
-import javax.swing.JOptionPane;
-
-//import java.io.IOException;
-
-//import javax.swing.JOptionPane;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.MenuBar;
 import javafx.stage.Stage;
-import threads.PacManThread;
 import userInterface.PacManController;
 
 public class Main extends Application {
 
 	public static void main(String[] args) {
 		launch(args);
-		System.out.println("Impresion Main");
 	}
 
 	@Override

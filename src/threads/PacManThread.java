@@ -16,7 +16,7 @@ public class PacManThread extends Thread {
 	}
 	
 	public void run() {
-		while(true) {
+		while(p.getStp()==false) {
 			p.movePacMan(pc.getWidth(), pc.getHeight());
 			try {
 				sleep(10);

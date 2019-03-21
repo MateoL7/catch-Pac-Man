@@ -26,6 +26,7 @@
                       <MenuItem fx:id="lvl0" mnemonicParsing="false" onAction="#getLevel0" text="Level 0" />
                         <MenuItem fx:id="lvl1" mnemonicParsing="false" onAction="#getLevel1" text="Level 1" />
                         <MenuItem fx:id="lvl2" mnemonicParsing="false" onAction="#getLevel2" text="Level 2" />
+                        <MenuItem fx:id="lastGame" mnemonicParsing="false" onAction="#getSavedGame" text="Last saved game" />
                     </items>
                   </Menu>
                <MenuItem fx:id="saveMenu" mnemonicParsing="false" onAction="#saveGame" text="Save Game" />
@@ -34,7 +35,7 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Scores">
             <items>
-              <MenuItem fx:id="scoresMenu" mnemonicParsing="false" text="View Best Scores" />
+              <MenuItem fx:id="scoresMenu" mnemonicParsing="false" onAction="#showScores" text="View Best Scores" />
             </items>
           </Menu>
         </menus>

@@ -1,6 +1,6 @@
 #Level
 2
-#radio posX posY waiting orientation rebounds stopped
+#radius posX posY waiting orientation rebounds stopped
 50	300	50	10	UP	False
 60	150	60	10	DOWN	False
 70	450	70	10	UP	False
