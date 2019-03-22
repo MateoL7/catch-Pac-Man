@@ -1,6 +1,6 @@
 #Last	game	info:
 #radius posX posY orientation stopped
-70.0	330.0	150.0	10	LEFT	true	
-100.0	1270.0	350.0	10	RIGHT	true	
-50.0	1025.0	550.0	10	RIGHT	true	
-80.0	485.0	700.0	10	RIGHT	true	
+70.0	625.0	150.0	10	RIGHT	true	
+100.0	880.0	350.0	10	RIGHT	true	
+20.0	1220.0	550.0	10	RIGHT	true	
+80.0	1730.0	700.0	10	RIGHT	true	

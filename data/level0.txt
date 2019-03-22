@@ -3,5 +3,5 @@
 #radius posX posY waiting orientation rebounds stopped
 70	70	150	10	RIGHT	False
 100	100	350	10	RIGHT	False
-50	50	550	10	RIGHT	False
+20	20	550	10	RIGHT	False
 80	80	700	10	RIGHT	False

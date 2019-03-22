@@ -3,12 +3,16 @@ package model;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+
+import java.io.Serializable;
+
 import org.junit.jupiter.api.Test;
 
 import javafx.scene.layout.Pane;
 import model.Direction;
 
-public class PacManTest {
+@SuppressWarnings("serial")
+public class PacManTest implements Serializable {
 
 	private PacMan pac;
 	private Pane pn;

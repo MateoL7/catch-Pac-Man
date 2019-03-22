@@ -5,7 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import userInterface.PacManController;
 
 public class Main extends Application {
 
@@ -17,8 +16,9 @@ public class Main extends Application {
 	public void start(Stage stage) throws Exception {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GameScreen.fxml"));
 		Parent root = fxmlLoader.load();
-		PacManController pmc = fxmlLoader.getController();
-		pmc.setStage(stage);
+		PacManController pc = fxmlLoader.getController();
+		pc.setStage(stage);
+		
 
 
 		Scene scene = new Scene(root);

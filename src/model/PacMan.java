@@ -1,6 +1,9 @@
 package model;
 
-public class PacMan {
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class PacMan implements Serializable {
 	
 
 	private double radius;

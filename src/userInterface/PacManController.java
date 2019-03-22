@@ -256,6 +256,17 @@ public class PacManController {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
+		
+		try {
+			ObjectOutputStream ois = new ObjectOutputStream(new FileOutputStream(new File("data/serealizedGame.txt")));
+			ois.writeObject(pacManList);
+			ois.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 	@FXML
